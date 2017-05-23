@@ -26,7 +26,7 @@ clc
 
 
 %% Parameters you may control
-desType = 4; % Set to 1 for SIFT, 2 for DSP, 3 for ASV-SIFT(1S), 4 for ASV-SIFT(1M2M).
+desType = 7; % Set to 1 for SIFT, 2 for DSP, 3 for ASV-SIFT(1S), 4 for ASV-SIFT(1M2M).
 detectType = 1; % 1 for DoGAff of vlfeat covdet function with affine approximation
 samMax = 5000; % Default 5000 keypoints (already sorted by peakscores in extraction)
 isPlot = 1; % Set to 1 and the PR-curve will show.
@@ -94,6 +94,38 @@ for i =1:8
             load([nameD2,'/1M2M']);
             f2 = f;
             d2 = d_1m2m;
+        elseif desType == 5
+            load([nameD1,'/ASV_y1']);
+            f1 = f;
+            d1 = d_asv_y1;
+            
+            load([nameD2,'/ASV_y1']);
+            f2 = f;
+            d2 = d_asv_y1;
+        elseif desType == 6
+            load([nameD1,'/ASV_y2']);
+            f1 = f;
+            d1 = d_asv_y2;
+            
+            load([nameD2,'/ASV_y2']);
+            f2 = f;
+            d2 = d_asv_y2;
+         elseif desType == 7
+            load([nameD1,'/ASV_y3']);
+            f1 = f;
+            d1 = d_asv_y3;
+            
+            load([nameD2,'/ASV_y3']);
+            f2 = f;
+            d2 = d_asv_y3;
+        elseif desType == 8
+            load([nameD1,'/ASV_noInter']);
+            f1 = f;
+            d1 = d_asv_no_inter;
+            
+            load([nameD2,'/ASV_noInter']);
+            f2 = f;
+            d2 = d_asv_no_inter;
         else
             fprintf('Wrong "desType" choice!!! Error!!!\n');
             stop
@@ -192,6 +224,14 @@ if isSave == 1
         save([nameR,'allResults_asv'],'AP');
     elseif desType ==4
         save([nameR,'allResults_1m2m'],'AP');
+    elseif desType ==5
+        save([nameR,'allResults_asv_y1'],'AP');
+    elseif desType ==6
+        save([nameR,'allResults_asv_y2'],'AP');
+    elseif desType ==7
+        save([nameR,'allResults_asv_y3'],'AP');
+    elseif desType ==8
+        save([nameR,'allResults_asv_no_inter'],'AP');
     else
         fprintf('Wrong "desType" choice!!! Error!!!\n');
         stop
